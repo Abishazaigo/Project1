@@ -80,12 +80,12 @@ function Form(){
                     </div>
                 </div>
                 <div className="form-group">
-                    {contacts.map((contact, idx) => {
+                    {contacts.map((contact, key) => {
                         return (
-                            <div key={{contact}-{idx}}>
+                            <div key={{contact}-{key}}>
                                 <div className="buttonIn">
-                                    <input type="tel"  className="form-control"  name="contact" placeholder="Enter phone no" onChange={e => handleChange(idx, e)} />
-                                    <button type="button" className="add bg-danger" onClick={() => handleRemove(idx)}>x</button>
+                                    <input type="tel"  className="form-control"  name="contact" placeholder="Enter phone no" onChange={e => handleChange(key, e)} />
+                                    <button type="button" className="add bg-danger" onClick={() => handleRemove(key)}>x</button>
                                     <p></p>
                                 </div>
                             </div>
@@ -113,123 +113,106 @@ function Form(){
                 <div className="form-group">
                 <div className="dropdown">
                     <label>State</label>  
-                    {country=="India" && (
                     <select ref={register({required: "required"})} name="state" id="state">
-                    
                         <option value="">Select</option>
-                        
-                        <option value="Tamil Nadu" >Tamil Nadu</option>
-                        <option value="Delhi">Delhi</option>
-                        <option value="Kerala">Kerala</option>
-                       
+                        {country=="India" && (
+                            <>
+                            <option value="Tamil Nadu" >Tamil Nadu</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Kerala">Kerala</option>
+                            </>
+                        )}
+                        {country=="USA" && (
+                            <>   
+                            <option value="California" >California</option>
+                            <option value="Texas">Texas</option>
+                            <option value="Florida">Florida</option>
+                            </>
+                        )}
+                        {country=="UK" && (
+                            <>
+                            <option value="Scotland" >Scotland</option>
+                            <option value="Wales">Wales</option>
+                            <option value="Northern Ireland">Northern Ireland</option>
+                            </>
+                        )}
                     </select>
-                      )}
-                      {country=="USA" && (
-                    <select ref={register({required: "required"})} name="state" id="state">
-                    
-                        <option value="">Select</option>
-                        
-                        <option value="California" >California</option>
-                        <option value="Texas">Texas</option>
-                        <option value="Florida">Florida</option>
-                       
-                    </select>
-                      )}
-                      {country=="UK" && (
-                    <select ref={register({required: "required"})} name="state" id="state">
-                    
-                        <option value="">Select</option>
-                        
-                        <option value="Scotland" >Scotland</option>
-                        <option value="Wales">Wales</option>
-                        <option value="Northern Ireland">Northern Ireland</option>
-                       
-                    </select>
-                      )}
                 </div>
                 <div className="text-danger">
                     {errors.state && errors.state.type === "required" && (
                     <span role="alert">Please select state</span>
                     )}
                 </div>
-            </div>
-                
-                
+                </div>
                 <div className="form-group">
                 <div className="dropdown">
                     <label>City</label>  
-                    {state=="Tamil Nadu" && (
                     <select ref={register({required: "required"})} name="city" id="city">
                         <option value="">Select</option>
-                        <option value="Chennai" >Chennai</option>
-                        <option value="Madurai">Madurai</option>
-                        <option value="Coimbatore">Coimbatore</option>
-                    </select>
-                     )}
-                     {state=="Delhi" && (
-                    <select ref={register({required: "required"})} name="city" id="city">
-                        <option value="">Select</option>
-                        <option value="New Delhi" >New Delhi</option>
-                        <option value="Gurugram">Gurugram</option>
-                        <option value="Connaught">Connaught</option>
-                    </select>
-                     )}
-                     {state=="Kerala" && (
-                    <select ref={register({required: "required"})} name="city" id="city">
-                        <option value="">Select</option>
-                        <option value="Thiruvananthapuram" >Thiruvananthapuram</option>
-                        <option value="Kochi">Kochi</option>
-                        <option value="Kozhikode">Kozhikode</option>
-                    </select>
-                     )}
-                     {state=="California" && (
-                    <select ref={register({required: "required"})} name="city" id="city">
-                        <option value="">Select</option>
-                        <option value="Los Angeles" >Los Angeles</option>
-                        <option value="San Francisco">San Francisco</option>
-                        <option value="San Deigo">San Deigo</option>
-                    </select>
-                     )}
-                      {state=="Texas" && (
-                    <select ref={register({required: "required"})} name="city" id="city">
-                        <option value="">Select</option>
-                        <option value="Houstan" >Houstan</option>
-                        <option value="Dallas">Dallas</option>
-                        <option value="Austin">Austin</option>
-                    </select>
-                     )}
-                      {state=="Florida" && (
-                    <select ref={register({required: "required"})} name="city" id="city">
-                        <option value="">Select</option>
-                        <option value="Miami" >Miami</option>
-                        <option value="Orlando">Orlando</option>
-                        <option value="Tampa">Tampa</option>
-                    </select>
-                     )}
-                      {state=="Scotland" && (
-                    <select ref={register({required: "required"})} name="city" id="city">
-                        <option value="">Select</option>
-                        <option value="Edinburgh" >Edinburgh</option>
-                        <option value="Glasgow">Glasgow</option>
-                        <option value="Dundee">Dundee</option>
-                    </select>
-                     )}
-                      {state=="Wales" && (
-                    <select ref={register({required: "required"})} name="city" id="city">
-                        <option value="">Select</option>
-                        <option value="Cardiff" >Cardiff</option>
-                        <option value="Swansea">Swansea</option>
-                        <option value="Newport">Newport</option>
-                    </select>
-                     )}
-                      {state=="Northern Ireland" && (
-                    <select ref={register({required: "required"})} name="city" id="city">
-                        <option value="">Select</option>
-                        <option value="Belfast" >Belfast</option>
-                        <option value="Londonderry">Londonderry</option>
-                        <option value="Lisburn">Lisburn</option>
-                    </select>
-                     )}
+                        {state=="Tamil Nadu" && (
+                            <>
+                            <option value="Chennai" >Chennai</option>
+                            <option value="Madurai">Madurai</option>
+                            <option value="Coimbatore">Coimbatore</option>
+                            </>
+                        )}
+                        {state=="Delhi" && (
+                            <>
+                            <option value="New Delhi" >New Delhi</option>
+                            <option value="Gurugram">Gurugram</option>
+                            <option value="Connaught">Connaught</option>
+                            </>
+                        )}
+                        {state=="Kerala" && (
+                            <>
+                            <option value="Thiruvananthapuram" >Thiruvananthapuram</option>
+                            <option value="Kochi">Kochi</option>
+                            <option value="Kozhikode">Kozhikode</option>
+                            </>
+                        )}
+                        {state=="California" && (
+                            <>
+                            <option value="Los Angeles" >Los Angeles</option>
+                            <option value="San Francisco">San Francisco</option>
+                            <option value="San Deigo">San Deigo</option>
+                            </>
+                        )}
+                        {state=="Texas" && (
+                            <>
+                            <option value="Houstan" >Houstan</option>
+                            <option value="Dallas">Dallas</option>
+                            <option value="Austin">Austin</option>
+                            </>
+                        )}
+                        {state=="Florida" && (
+                            <>
+                            <option value="Miami" >Miami</option>
+                            <option value="Orlando">Orlando</option>
+                            <option value="Tampa">Tampa</option>
+                            </>
+                        )}
+                        {state=="Scotland" && (
+                            <>
+                            <option value="Edinburgh" >Edinburgh</option>
+                            <option value="Glasgow">Glasgow</option>
+                            <option value="Dundee">Dundee</option>
+                            </>
+                        )}
+                        {state=="Wales" && (
+                            <>
+                            <option value="Cardiff" >Cardiff</option>
+                            <option value="Swansea">Swansea</option>
+                            <option value="Newport">Newport</option>
+                            </>
+                        )}
+                        {state=="Northern Ireland" && (
+                            <>
+                            <option value="Belfast" >Belfast</option>
+                            <option value="Londonderry">Londonderry</option>
+                            <option value="Lisburn">Lisburn</option>
+                            </>
+                        )}
+                    </select>                     
                 </div>
                 <div className="text-danger">
                     {errors.city && errors.city.type === "required" && (
@@ -275,16 +258,6 @@ function Form(){
                     <div className="text-danger">
                         {errors.hobbies && errors.hobbies.type === "required" && (
                         <span role="alert">Please select hobbies</span>
-                        )}
-                    </div>
-                </div>
-                <div className="form-group">
-                    <label>Address</label>
-                    <textarea ref={register({required:"required"})} className={`form-control ${errors && errors.address && "highlight"}`} name="address" placeholder="Enter address" rows="3" cols="5">
-                    </textarea>
-                    <div className="text-danger">
-                        {errors.address && errors.address.type === "required" && (
-                        <span role="alert">Please enter the address</span>
                         )}
                     </div>
                 </div>
